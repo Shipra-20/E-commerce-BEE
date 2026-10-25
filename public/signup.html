@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create Account | Veloura</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <script src="js/auth.js" defer></script>
+</head>
+
+<body>
+    <main class="auth-page">
+        <section class="auth-art">
+            <a href="/" class="logo">veloura<span>.</span></a>
+            <div>
+                <span class="eyebrow">A LITTLE MORE YOU</span>
+                <h2>Make room for the good things.</h2>
+                <p>Create an account and start collecting the things you love.</p>
+            </div>
+            <span>© 2026 Veloura</span>
+        </section>
+
+        <section class="auth-panel">
+            <form class="auth-form" id="signupForm">
+                <a href="/" class="auth-back">← Back to the store</a>
+                <span class="eyebrow">JOIN THE VELOURA WORLD</span>
+                <h1>Let's make it yours.</h1>
+                <p class="auth-subtitle">Create an account in just a few steps.</p>
+
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" autocomplete="name" minlength="2" maxlength="60"
+                    placeholder="Your full name" required>
+
+                <label for="email">Email address</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+
+                <label for="password">Create password</label>
+                <input id="password" name="password" type="password" autocomplete="new-password" minlength="8"
+                    maxlength="72" placeholder="At least 8 characters" required>
+                <p class="password-hint">Use at least 8 characters.</p>
+
+                <p class="auth-error" id="authError" role="alert"></p>
+                <button class="primary-btn" type="submit" id="submitBtn">Create account ↗</button>
+
+                <p class="auth-switch">Already a member? <a href="login.html">Sign in</a></p>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>

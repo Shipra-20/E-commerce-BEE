@@ -1,0 +1,154 @@
+.auth-page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--paper);
+}
+
+.auth-art {
+    background:
+        linear-gradient(180deg, rgba(30, 48, 36, .1), rgba(30, 48, 36, .72)),
+        url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85") center/cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 45px;
+    color: white;
+}
+
+.auth-art .logo {
+    color: white;
+}
+
+.auth-art .logo span {
+    color: #e7b78d;
+}
+
+.auth-art h2 {
+    font: 500 clamp(36px, 4vw, 55px)/1.15 var(--serif);
+    max-width: 420px;
+}
+
+.auth-art p {
+    font-size: 12px;
+    line-height: 1.9;
+    max-width: 350px;
+}
+
+.auth-art .eyebrow {
+    color: #e7b78d;
+}
+
+.auth-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 25px;
+}
+
+.auth-form {
+    width: 100%;
+    max-width: 390px;
+}
+
+.auth-form h1 {
+    font: 500 38px var(--serif);
+    margin: 15px 0 8px;
+}
+
+.auth-subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 30px;
+    line-height: 1.7;
+}
+
+.auth-form label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--line);
+    background: white;
+    outline: none;
+    font-size: 12px;
+    border-radius: 0;
+}
+
+.auth-form input:focus {
+    border-color: var(--green);
+}
+
+.auth-form .primary-btn {
+    width: 100%;
+    margin-top: 24px;
+}
+
+.auth-switch {
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 24px;
+}
+
+.auth-switch a {
+    color: var(--green);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.auth-error {
+    color: #a33d36;
+    font-size: 11px;
+    line-height: 1.6;
+    min-height: 18px;
+    margin-top: 12px;
+}
+
+.auth-back {
+    font-size: 11px;
+    color: var(--muted);
+    display: inline-block;
+    margin-bottom: 28px;
+}
+
+.password-hint {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 7px;
+}
+
+@media (max-width: 720px) {
+    .auth-page {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-art {
+        min-height: 230px;
+        padding: 25px;
+    }
+
+    .auth-art h2 {
+        font-size: 30px;
+        margin: 35px 0 5px;
+    }
+
+    .auth-art p {
+        margin-bottom: 0;
+    }
+
+    .auth-panel {
+        padding: 38px 24px 50px;
+        align-items: start;
+    }
+
+    .auth-form h1 {
+        font-size: 33px;
+    }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign In | Veloura</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <script src="js/auth.js" defer></script>
+</head>
+
+<body>
+    <main class="auth-page">
+        <section class="auth-art">
+            <a href="/" class="logo">veloura<span>.</span></a>
+            <div>
+                <span class="eyebrow">WELCOME BACK</span>
+                <h2>Your next favourite is waiting.</h2>
+                <p>Come back to the little things that make your style yours.</p>
+            </div>
+            <span>© 2026 Veloura</span>
+        </section>
+
+        <section class="auth-panel">
+            <form class="auth-form" id="loginForm">
+                <a href="/" class="auth-back">← Back to the store</a>
+                <span class="eyebrow">YOUR PERSONAL EDIT</span>
+                <h1>Good to see you.</h1>
+                <p class="auth-subtitle">Sign in to continue your Veloura experience.</p>
+
+                <label for="email">Email address</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" autocomplete="current-password"
+                    placeholder="Your password" required>
+
+                <p class="auth-error" id="authError" role="alert"></p>
+                <button class="primary-btn" type="submit" id="submitBtn">Sign in ↗</button>
+
+                <p class="auth-switch">New to Veloura? <a href="signup.html">Create an account</a></p>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>
