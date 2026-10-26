@@ -1,60 +1,30 @@
-const loginForm = document.getElementById("loginForm");
-const signupForm = document.getElementById("signupForm");
-
-async function submitAuth(endpoint, payload) {
-    const errorElement = document.getElementById("authError");
-    const submitButton = document.getElementById("submitBtn");
-
-    errorElement.textContent = "";
-    submitButton.disabled = true;
-    submitButton.textContent = "Please wait...";
-
-    try {
-        const response = await fetch(`/api/auth/${endpoint}`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        });
-
-        const result = await response.json();
-
-        if (!response.ok) {
-            throw new Error(result.message || "Something went wrong.");
-        }
-
-        localStorage.setItem("velouraToken", result.token);
-        localStorage.setItem("velouraUser", JSON.stringify(result.user));
-
-        window.location.href = "/";
-    } catch (error) {
-        errorElement.textContent =
-            error.message || "Unable to connect. Please try again.";
-    } finally {
-        submitButton.disabled = false;
-        submitButton.textContent =
-            endpoint === "login" ? "Sign in ↗" : "Create account ↗";
+(() => {
+    const message = document.getElementById('form-message');
+    function show(text, kind = 'error') { message.textContent = text; message.className = `form-message ${kind}`; }
+    async function send(url, payload) {
+        const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        let data = {}; try { data = await response.json(); } catch { }
+        if (!response.ok) throw new Error(data.message || data.error || 'Request failed. Please check your details.');
+        return data;
     }
-}
-
-if (loginForm) {
-    loginForm.addEventListener("submit", event => {
-        event.preventDefault();
-
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-
-        submitAuth("login", { email, password });
+    function storeSession(data) {
+        const token = data.token || data.accessToken || data.jwt || data.data?.token;
+        const user = data.user || data.data?.user || { name: data.name || '' };
+        if (token) { localStorage.setItem('velouraToken', token); localStorage.setItem('token', token); }
+        if (user) { localStorage.setItem('velouraUser', JSON.stringify(user)); localStorage.setItem('user', JSON.stringify(user)); }
+    }
+    const login = document.getElementById('login-form');
+    if (login) login.addEventListener('submit', async e => {
+        e.preventDefault(); const button = login.querySelector('button'); button.disabled = true; button.firstChild.textContent = 'Signing you in… ';
+        const form = new FormData(login);
+        try { const data = await send('/api/auth/login', { email: form.get('email'), password: form.get('password') }); storeSession(data); show('You’re in. Taking you to the shop…', 'success'); setTimeout(() => location.href = 'index.html', 700); }
+        catch (err) { show(err.message); } finally { button.disabled = false; button.firstChild.textContent = 'Log in to Veloura '; }
     });
-}
-
-if (signupForm) {
-    signupForm.addEventListener("submit", event => {
-        event.preventDefault();
-
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-
-        submitAuth("signup", { name, email, password });
+    const signup = document.getElementById('signup-form');
+    if (signup) signup.addEventListener('submit', async e => {
+        e.preventDefault(); const button = signup.querySelector('button'); button.disabled = true; button.firstChild.textContent = 'Creating account… ';
+        const form = new FormData(signup);
+        try { const data = await send('/api/auth/signup', { name: form.get('name'), email: form.get('email'), password: form.get('password') }); storeSession(data); show('Account created. Taking you to the shop…', 'success'); setTimeout(() => location.href = 'index.html', 700); }
+        catch (err) { show(err.message); } finally { button.disabled = false; button.firstChild.textContent = 'Create my account '; }
     });
-}
+})();

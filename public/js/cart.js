@@ -1,160 +1,32 @@
-const CART_KEY = "velouraCart";
-
-function readCart() {
-    try {
-        const cart = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
-        return Array.isArray(cart) ? cart : [];
-    } catch {
-        return [];
+(() => {
+    const KEY = 'velouraCart';
+    const read = () => { try { const v = JSON.parse(localStorage.getItem(KEY) || '[]'); return Array.isArray(v) ? v : []; } catch { return []; } };
+    const write = items => { localStorage.setItem(KEY, JSON.stringify(items)); render(); };
+    const id = p => String(p.id ?? p._id ?? p.name);
+    const money = n => window.VelouraUI?.money ? window.VelouraUI.money(n) : `₹${Number(n) || 0}`;
+    function render() {
+        const items = read();
+        const count = items.reduce((sum, p) => sum + (Number(p.quantity) || 1), 0);
+        document.getElementById('cart-count').textContent = count;
+        document.getElementById('cart-panel-count').textContent = `(${count})`;
+        document.getElementById('cart-subtotal').textContent = money(items.reduce((sum, p) => sum + (Number(p.price) || 0) * (Number(p.quantity) || 1), 0));
+        const host = document.getElementById('cart-items');
+        host.innerHTML = items.length ? items.map(p => `<div class="panel-row"><img src="${p.image || p.imageUrl || p.img || ''}" alt=""><div><h3>${p.name || 'Product'}</h3><p>${money(p.price)}${(Number(p.quantity) || 1) > 1 ? ` × ${p.quantity}` : ''}</p><button data-cart-remove="${id(p)}">Remove</button></div><div><button data-cart-plus="${id(p)}" aria-label="Increase quantity">＋</button><button data-cart-minus="${id(p)}" aria-label="Decrease quantity">−</button></div></div>`).join('') : '<div class="empty-state">Your bag is taking a breather.<br>Add something good to get started.</div>';
     }
-}
-
-function saveCart(cart) {
-    localStorage.setItem(CART_KEY, JSON.stringify(cart));
-    renderCart();
-}
-
-function addToCart(id) {
-    const cart = readCart();
-    const existing = cart.find(item => item.id === id);
-
-    if (existing) {
-        existing.quantity = Math.min(99, existing.quantity + 1);
-    } else {
-        cart.push({ id, quantity: 1 });
+    function addItem(product) {
+        const items = read(), found = items.find(p => id(p) === id(product));
+        if (found) found.quantity = (Number(found.quantity) || 1) + 1; else items.push({ ...product, quantity: 1 });
+        write(items);
     }
-
-    saveCart(cart);
-    window.showToast("Added to your bag!");
-}
-
-function changeQuantity(id, change) {
-    const cart = readCart();
-    const item = cart.find(entry => entry.id === id);
-
-    if (!item) return;
-
-    item.quantity += change;
-
-    const updated = cart.filter(entry =>
-        entry.id !== id && entry.quantity > 0
-    );
-
-    if (item.quantity > 0) updated.push(item);
-    saveCart(updated);
-}
-
-function removeFromCart(id) {
-    saveCart(readCart().filter(item => item.id !== id));
-    window.showToast("Item removed from your bag.");
-}
-
-function renderCart() {
-    const products = window.velouraProducts();
-    const cart = readCart();
-
-    const validCart = cart.filter(item =>
-        products.some(product => product.id === item.id) &&
-        Number.isInteger(item.quantity) &&
-        item.quantity > 0
-    );
-
-    document.getElementById("cartCount").textContent =
-        validCart.reduce((sum, item) => sum + item.quantity, 0);
-
-    const itemsElement = document.getElementById("cartItems");
-
-    itemsElement.innerHTML = validCart.length
-        ? validCart.map(item => {
-            const product = products.find(p => p.id === item.id);
-
-            return `
-          <article class="drawer-item">
-            <img src="${product.image}" alt="${product.name}">
-            <div>
-              <h3>${product.name}</h3>
-              <p>${window.money(product.price)}</p>
-              <div class="quantity-control">
-                <button data-cart-action="minus" data-id="${item.id}"
-                        aria-label="Decrease quantity">−</button>
-                <span>${item.quantity}</span>
-                <button data-cart-action="plus" data-id="${item.id}"
-                        aria-label="Increase quantity"
-                        ${item.quantity >= 99 ? "disabled" : ""}>+</button>
-              </div>
-              <button data-cart-action="remove" data-id="${item.id}">Remove</button>
-            </div>
-            <strong>${window.money(product.price * item.quantity)}</strong>
-          </article>`;
-        }).join("")
-        : '<div class="drawer-empty">Your bag is waiting for something lovely.</div>';
-
-    const total = validCart.reduce((sum, item) => {
-        const product = products.find(p => p.id === item.id);
-        return sum + product.price * item.quantity;
-    }, 0);
-
-    document.getElementById("cartSubtotal").textContent = window.money(total);
-
-    if (JSON.stringify(cart) !== JSON.stringify(validCart)) {
-        localStorage.setItem(CART_KEY, JSON.stringify(validCart));
-    }
-}
-
-document.getElementById("productGrid").addEventListener("click", event => {
-    const button = event.target.closest("[data-action='add']");
-    if (button) addToCart(Number(button.dataset.id));
-});
-
-document.getElementById("cartItems").addEventListener("click", event => {
-    const button = event.target.closest("[data-cart-action]");
-    if (!button) return;
-
-    const id = Number(button.dataset.id);
-    const action = button.dataset.cartAction;
-
-    if (action === "minus") changeQuantity(id, -1);
-    if (action === "plus") changeQuantity(id, 1);
-    if (action === "remove") removeFromCart(id);
-});
-
-document.getElementById("checkoutBtn").addEventListener("click", () => {
-    const cart = readCart();
-
-    if (!cart.length) {
-        window.showToast("Your bag is empty.");
-        return;
-    }
-
-    if (!localStorage.getItem("velouraToken")) {
-        window.showToast("Please sign in before checkout.");
-        setTimeout(() => {
-            window.location.href = "login.html";
-        }, 700);
-        return;
-    }
-
-    window.showToast("Demo only: payment and order placement are not connected.");
-});
-
-window.renderCart = renderCart;
-window.readCart = readCart;
-window.addToCart = addToCart;
-
-document.getElementById("cartToggle").addEventListener("click", () => {
-    window.openDrawer("cartDrawer");
-});
-
-document.querySelectorAll("[data-close-drawer]").forEach(button => {
-    button.addEventListener("click", window.closeDrawers);
-});
-
-document.getElementById("drawerBackdrop").addEventListener(
-    "click", window.closeDrawers
-);
-
-document.addEventListener("keydown", event => {
-    if (event.key === "Escape") window.closeDrawers();
-});
-
-renderCart();
+    function open() { document.getElementById('cart-panel').classList.add('open'); document.getElementById('panel-scrim').classList.add('open'); }
+    document.getElementById('cart-items').addEventListener('click', e => {
+        const remove = e.target.closest('[data-cart-remove]'), plus = e.target.closest('[data-cart-plus]'), minus = e.target.closest('[data-cart-minus]');
+        let items = read();
+        if (remove) items = items.filter(p => id(p) !== remove.dataset.cartRemove);
+        if (plus) items = items.map(p => id(p) === plus.dataset.cartPlus ? { ...p, quantity: (Number(p.quantity) || 1) + 1 } : p);
+        if (minus) items = items.map(p => id(p) === minus.dataset.cartMinus ? { ...p, quantity: (Number(p.quantity) || 1) - 1 } : p).filter(p => (Number(p.quantity) || 0) > 0);
+        write(items);
+    });
+    window.VelouraCart = { addItem, open, getItems: read, render };
+    render();
+})();

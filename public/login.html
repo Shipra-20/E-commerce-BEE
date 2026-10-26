@@ -3,50 +3,41 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sign In | Veloura</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Log in — Veloura</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
-    <script src="js/auth.js" defer></script>
 </head>
 
 <body>
-    <main class="auth-page">
-        <section class="auth-art">
-            <a href="/" class="logo">veloura<span>.</span></a>
-            <div>
-                <span class="eyebrow">WELCOME BACK</span>
-                <h2>Your next favourite is waiting.</h2>
-                <p>Come back to the little things that make your style yours.</p>
-            </div>
-            <span>© 2026 Veloura</span>
+    <main class="auth-layout"><a class="back-link" href="index.html">← Back to the good stuff</a>
+        <section class="auth-visual"><a class="wordmark" href="index.html">veloura<span>®</span></a>
+            <div class="visual-copy">
+                <p class="eyebrow">YOUR FINDS. YOUR RULES.</p>
+                <h1>Good to<br><em>see you.</em></h1>
+                <p>Pick up right where your good taste left off.</p>
+            </div><span class="visual-bottom">GOOD TASTE. NO GATEKEEPING.</span>
+            <div class="visual-orb">V.</div>
         </section>
-
-        <section class="auth-panel">
-            <form class="auth-form" id="loginForm">
-                <a href="/" class="auth-back">← Back to the store</a>
-                <span class="eyebrow">YOUR PERSONAL EDIT</span>
-                <h1>Good to see you.</h1>
-                <p class="auth-subtitle">Sign in to continue your Veloura experience.</p>
-
-                <label for="email">Email address</label>
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-
-                <label for="password">Password</label>
-                <input id="password" name="password" type="password" autocomplete="current-password"
-                    placeholder="Your password" required>
-
-                <p class="auth-error" id="authError" role="alert"></p>
-                <button class="primary-btn" type="submit" id="submitBtn">Sign in ↗</button>
-
-                <p class="auth-switch">New to Veloura? <a href="signup.html">Create an account</a></p>
-            </form>
+        <section class="auth-form-side">
+            <div class="auth-form-wrap">
+                <p class="eyebrow">WELCOME BACK</p>
+                <h2>Log in<span>↗</span></h2>
+                <p class="form-intro">Your saved things are waiting.</p>
+                <form id="login-form"><label>Email address<input type="email" name="email" placeholder="you@example.com"
+                            required autocomplete="email"></label><label>Password<input type="password" name="password"
+                            placeholder="Your password" required autocomplete="current-password"></label><button
+                        class="submit-btn" type="submit">Log in to Veloura <span>↗</span></button>
+                    <p id="form-message" class="form-message" role="status"></p>
+                </form>
+                <p class="switch-auth">New around here? <a href="signup.html">Make an account ↗</a></p>
+                <p class="form-footnote">Demo store · No real payment details required.</p>
+            </div>
         </section>
     </main>
+    <script src="js/auth.js"></script>
 </body>
 
 </html>

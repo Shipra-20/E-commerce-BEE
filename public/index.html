@@ -4,153 +4,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover your everyday style at Veloura.">
-    <title>Veloura — Find Your Everyday Style</title>
+    <meta name="theme-color" content="#d8ff3e">
+    <title>Veloura — Objects of desire</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/app.js" defer></script>
-    <script src="js/wishlist.js" defer></script>
-    <script src="js/cart.js" defer></script>
 </head>
 
 <body>
-    <div class="announcement">
-        ✦ A little something special — free shipping on orders above ₹2,999
+    <div class="ticker">
+        <div class="ticker-track"><span>GOOD THINGS, BETTER FINDS ✳ FREE SHIPPING OVER ₹1,499 ✳ NEW DROP EVERY WEEK
+                ✳</span><span>GOOD THINGS, BETTER FINDS ✳ FREE SHIPPING OVER ₹1,499 ✳ NEW DROP EVERY WEEK ✳</span></div>
     </div>
-
-    <header class="navbar">
-        <a href="/" class="logo">veloura<span>.</span></a>
-
-        <nav class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#products">Shop all</a>
-            <a href="#products" data-nav-category="Clothing">Clothing</a>
-            <a href="#products" data-nav-category="Accessories">Accessories</a>
-        </nav>
-
-        <div class="nav-actions">
-            <button class="icon-btn" id="searchToggle" aria-label="Focus search">⌕</button>
-            <button class="icon-btn" id="wishlistToggle" aria-label="Open wishlist">
-                ♡ <span class="count" id="wishlistCount">0</span>
-            </button>
-            <button class="icon-btn" id="cartToggle" aria-label="Open cart">
-                Bag <span class="count" id="cartCount">0</span>
-            </button>
-            <a class="login-link" id="accountLink" href="login.html">Sign in</a>
+    <header class="site-header">
+        <a class="wordmark" href="index.html" aria-label="Veloura home">veloura<span>®</span></a>
+        <nav class="main-nav"><a href="#shop">Shop all</a><a href="#categories">Categories</a><a href="#story">Our point
+                of view</a></nav>
+        <div class="header-actions">
+            <button class="icon-btn" id="search-focus" aria-label="Focus search">⌕ <span
+                    class="action-label">Search</span></button>
+            <button class="icon-btn" id="open-wishlist" aria-label="Open wishlist">♡ <span
+                    class="action-label">Saved</span><b id="wishlist-count">0</b></button>
+            <button class="icon-btn" id="open-cart" aria-label="Open cart">Bag <b id="cart-count">0</b></button>
+            <a class="account-link" id="account-link" href="login.html">Log in ↗</a>
         </div>
     </header>
-
     <main>
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <span class="eyebrow">THE EVERYDAY EDIT · 2026</span>
-                <h1>Less ordinary.<br><em>More you.</em></h1>
-                <p>Thoughtful finds, timeless essentials, and little things that make every day feel special.</p>
-                <a href="#products" class="primary-btn">Explore the collection <span>↗</span></a>
-                <div class="hero-note">Curated with care. Made for your world.</div>
+        <section class="hero" id="story">
+            <div class="hero-copy">
+                <p class="eyebrow"><span class="live-dot"></span> THE EVERYDAY EDIT — VOL. 04</p>
+                <h1>Less basic.<br><em>More you.</em></h1>
+                <p class="hero-description">Good design, useful things, and little upgrades that make everyday feel like
+                    an occasion.</p>
+                <div class="hero-cta-row"><a class="button button-dark" href="#shop">Explore the drop
+                        <span>↘</span></a><span class="hero-note">Curated, never complicated.</span></div>
             </div>
-            <div class="hero-image" role="img" aria-label="Fashion and lifestyle collection"></div>
-            <div class="hero-sticker">YOUR<br>STYLE,<br>YOUR STORY.</div>
+            <div class="hero-art">
+                <div class="hero-sticker">FRESH<br>FINDS<br><span>✳ 2026</span></div>
+                <div class="hero-image-frame"><img
+                        src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1100&q=85"
+                        alt="Statement bag in a minimalist fashion editorial"></div>
+                <div class="hero-side-note">01 / NEW SEASON<br>OBJECTS WITH ATTITUDE</div>
+                <div class="hero-bottom-label">THE GOOD STUFF STARTS HERE.</div>
+            </div>
+            <div class="hero-index">SCROLL TO DISCOVER <span>↓</span></div>
         </section>
 
-        <section class="benefits">
-            <div>✳ Thoughtfully curated</div>
-            <div>↗ Easy everyday style</div>
-            <div>♡ Made for your moments</div>
-        </section>
-
-        <section class="shop-section" id="products">
+        <section class="category-section" id="categories">
             <div class="section-heading">
                 <div>
-                    <span class="eyebrow">THE VEL0URA EDIT</span>
-                    <h2>Find your favourites<span>.</span></h2>
-                    <p>Good things, picked just for you.</p>
+                    <p class="eyebrow">FIND YOUR THING</p>
+                    <h2>Shop by <em>mood.</em></h2>
                 </div>
-                <span id="resultCount" class="result-count"></span>
+                <p class="section-aside">A little bit of everything.<br>All of it worth a closer look.</p>
             </div>
+            <div class="category-grid">
+                <button class="category-tile tile-style" data-category="Fashion"><span class="tile-number">01 /
+                        STYLE</span><span class="tile-title">Wear it<br>your way <b>↗</b></span><span
+                        class="tile-circle">✳</span></button>
+                <button class="category-tile tile-living" data-category="Home"><span class="tile-number">02 /
+                        LIVING</span><span class="tile-title">Make room<br>for good <b>↗</b></span><span
+                        class="tile-circle">⌂</span></button>
+                <button class="category-tile tile-tech" data-category="Accessories"><span class="tile-number">03 /
+                        EXTRAS</span><span class="tile-title">Small things.<br>Big energy <b>↗</b></span><span
+                        class="tile-circle">✦</span></button>
+            </div>
+        </section>
 
+        <section class="shop-section" id="shop">
+            <div class="shop-topline">
+                <p class="eyebrow">THE CURRENT ROTATION</p><span class="mono" id="product-total">CURATED FINDS /
+                    00</span>
+            </div>
+            <div class="shop-title-row">
+                <h2>Good picks.<br><em>No second guessing.</em></h2>
+                <p>Considered pieces for your daily rotation.<br>Find your next favourite below.</p>
+            </div>
             <div class="shop-controls">
-                <div class="search-box">
-                    <span>⌕</span>
-                    <input id="searchInput" type="search" placeholder="Search your next favourite..."
-                        aria-label="Search products">
-                    <button id="clearSearch" type="button" aria-label="Clear search">×</button>
-                </div>
-
-                <div class="category-filters" id="categoryFilters">
-                    <button class="filter-btn active" data-category="All">All finds</button>
-                    <button class="filter-btn" data-category="Clothing">Clothing</button>
-                    <button class="filter-btn" data-category="Footwear">Footwear</button>
-                    <button class="filter-btn" data-category="Accessories">Accessories</button>
-                    <button class="filter-btn" data-category="Bags">Bags</button>
-                </div>
-
-                <select id="sortSelect" aria-label="Sort products">
-                    <option value="featured">Featured</option>
-                    <option value="price-low">Price: low to high</option>
-                    <option value="price-high">Price: high to low</option>
-                    <option value="rating">Top rated</option>
+                <label class="search-box"><span>⌕</span><input id="search-input" type="search"
+                        placeholder="Search the good stuff..." aria-label="Search products"><kbd>↵</kbd></label>
+                <div class="filter-buttons" id="filter-buttons"><button class="filter-chip active"
+                        data-filter="all">Everything</button><button class="filter-chip"
+                        data-filter="Fashion">Style</button><button class="filter-chip"
+                        data-filter="Home">Living</button><button class="filter-chip"
+                        data-filter="Accessories">Extras</button></div>
+                <select id="sort-select" aria-label="Sort products">
+                    <option value="featured">Sort: featured</option>
+                    <option value="low">Price: low to high</option>
+                    <option value="high">Price: high to low</option>
+                    <option value="name">Name: A–Z</option>
                 </select>
             </div>
-
-            <div class="product-grid" id="productGrid">
-                <p class="empty-state">Discovering your favourites...</p>
+            <div class="product-grid" id="product-grid">
+                <div class="loading-state">Finding the good stuff<span>✳</span></div>
             </div>
+            <div class="shop-footer"><span>THAT'S THE EDIT. FOR NOW.</span><a href="#shop">BACK TO THE TOP ↑</a></div>
         </section>
 
-        <section class="newsletter">
-            <span class="eyebrow">A NOTE FROM VELOURA</span>
-            <h2>Good taste. Great updates.</h2>
-            <p>A little inspiration for your inbox. No clutter, just the good stuff.</p>
-            <form id="newsletterForm" class="newsletter-form">
-                <input type="email" placeholder="Your email address" required>
-                <button type="submit">Count me in ↗</button>
-            </form>
-            <p id="newsletterMessage" class="newsletter-message"></p>
+        <section class="manifesto">
+            <div class="manifesto-mark">V.</div>
+            <p class="eyebrow">A SMALL REMINDER</p>
+            <h2>You don't need more things.<br>You need <em>the right things.</em></h2>
+            <p>We’re here for the finds that earn their place in your life.</p><a href="#shop" class="text-link">Find
+                your right thing ↗</a>
         </section>
     </main>
+    <footer class="site-footer"><a class="wordmark" href="index.html">veloura<span>®</span></a><span>GOOD TASTE. NO
+            GATEKEEPING.</span><span>© VELOURA 2026</span></footer>
 
-    <footer class="footer">
-        <a href="/" class="logo">veloura<span>.</span></a>
-        <p>Little finds. Lasting feelings.</p>
-        <span>© 2026 Veloura · Demo shopping experience</span>
-    </footer>
-
-    <div class="drawer-backdrop" id="drawerBackdrop"></div>
-
-    <aside class="drawer" id="cartDrawer" aria-label="Shopping cart" aria-hidden="true">
-        <div class="drawer-header">
-            <div><span class="eyebrow">YOUR SELECTION</span>
-                <h2>Your bag</h2>
-            </div>
-            <button class="close-btn" data-close-drawer aria-label="Close cart">×</button>
+    <div class="scrim" id="panel-scrim"></div>
+    <aside class="side-panel" id="cart-panel" aria-label="Shopping bag">
+        <div class="panel-head">
+            <div>
+                <p class="eyebrow">YOUR SELECTION</p>
+                <h2>Your bag <span id="cart-panel-count">(0)</span></h2>
+            </div><button class="close-panel" data-close aria-label="Close cart">×</button>
         </div>
-        <div class="drawer-items" id="cartItems"></div>
-        <div class="drawer-footer">
-            <div class="total-row"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div>
-            <p class="shipping-note">Shipping and taxes calculated at checkout.</p>
-            <button class="primary-btn checkout-btn" id="checkoutBtn">Continue to checkout ↗</button>
-            <button class="text-btn" data-close-drawer>Continue shopping</button>
+        <div class="panel-items" id="cart-items"></div>
+        <div class="panel-bottom">
+            <div class="subtotal-row"><span>Subtotal</span><strong id="cart-subtotal">₹0</strong></div>
+            <p class="tiny-note">Shipping and taxes calculated at checkout.</p><button class="button button-lime"
+                id="checkout-btn">Continue to checkout ↗</button>
         </div>
     </aside>
-
-    <aside class="drawer" id="wishlistDrawer" aria-label="Wishlist" aria-hidden="true">
-        <div class="drawer-header">
-            <div><span class="eyebrow">SAVED WITH LOVE</span>
-                <h2>Your wishlist</h2>
-            </div>
-            <button class="close-btn" data-close-drawer aria-label="Close wishlist">×</button>
+    <aside class="side-panel" id="wishlist-panel" aria-label="Wishlist">
+        <div class="panel-head">
+            <div>
+                <p class="eyebrow">THE KEEPERS</p>
+                <h2>Saved things <span id="wishlist-panel-count">(0)</span></h2>
+            </div><button class="close-panel" data-close aria-label="Close wishlist">×</button>
         </div>
-        <div class="drawer-items" id="wishlistItems"></div>
-        <div class="drawer-footer">
-            <button class="primary-btn checkout-btn" id="wishlistShopBtn">Explore more finds ↗</button>
-        </div>
+        <div class="panel-items" id="wishlist-items"></div>
     </aside>
-
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>

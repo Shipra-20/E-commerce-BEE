@@ -3,55 +3,44 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Create Account | Veloura</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Create account — Veloura</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
-    <script src="js/auth.js" defer></script>
 </head>
 
 <body>
-    <main class="auth-page">
-        <section class="auth-art">
-            <a href="/" class="logo">veloura<span>.</span></a>
-            <div>
-                <span class="eyebrow">A LITTLE MORE YOU</span>
-                <h2>Make room for the good things.</h2>
-                <p>Create an account and start collecting the things you love.</p>
-            </div>
-            <span>© 2026 Veloura</span>
+    <main class="auth-layout"><a class="back-link" href="index.html">← Back to the good stuff</a>
+        <section class="auth-visual"><a class="wordmark" href="index.html">veloura<span>®</span></a>
+            <div class="visual-copy">
+                <p class="eyebrow">JOIN THE GOOD LIST</p>
+                <h1>Your next<br><em>favourite.</em></h1>
+                <p>Save the finds. Build your bag. Make it yours.</p>
+            </div><span class="visual-bottom">THE EVERYDAY EDIT STARTS HERE.</span>
+            <div class="visual-orb">✳</div>
         </section>
-
-        <section class="auth-panel">
-            <form class="auth-form" id="signupForm">
-                <a href="/" class="auth-back">← Back to the store</a>
-                <span class="eyebrow">JOIN THE VELOURA WORLD</span>
-                <h1>Let's make it yours.</h1>
-                <p class="auth-subtitle">Create an account in just a few steps.</p>
-
-                <label for="name">Full name</label>
-                <input id="name" name="name" type="text" autocomplete="name" minlength="2" maxlength="60"
-                    placeholder="Your full name" required>
-
-                <label for="email">Email address</label>
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-
-                <label for="password">Create password</label>
-                <input id="password" name="password" type="password" autocomplete="new-password" minlength="8"
-                    maxlength="72" placeholder="At least 8 characters" required>
-                <p class="password-hint">Use at least 8 characters.</p>
-
-                <p class="auth-error" id="authError" role="alert"></p>
-                <button class="primary-btn" type="submit" id="submitBtn">Create account ↗</button>
-
-                <p class="auth-switch">Already a member? <a href="login.html">Sign in</a></p>
-            </form>
+        <section class="auth-form-side">
+            <div class="auth-form-wrap">
+                <p class="eyebrow">FIRST THINGS FIRST</p>
+                <h2>Create account<span>↗</span></h2>
+                <p class="form-intro">A few details and you're in.</p>
+                <form id="signup-form"><label>Your name<input type="text" name="name"
+                            placeholder="How should we call you?" required autocomplete="name"
+                            minlength="2"></label><label>Email address<input type="email" name="email"
+                            placeholder="you@example.com" required autocomplete="email"></label><label>Password<input
+                            type="password" name="password" placeholder="At least 6 characters" required
+                            autocomplete="new-password" minlength="6"></label><button class="submit-btn"
+                        type="submit">Create my account <span>↗</span></button>
+                    <p id="form-message" class="form-message" role="status"></p>
+                </form>
+                <p class="switch-auth">Already have an account? <a href="login.html">Log in ↗</a></p>
+                <p class="form-footnote">Your details are used to sign you in to this demo store.</p>
+            </div>
         </section>
     </main>
+    <script src="js/auth.js"></script>
 </body>
 
 </html>
